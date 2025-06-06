@@ -1,44 +1,112 @@
+"use client";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import ProjectCarousel from "./components/projectCarousel";
+
 export default function Home() {
+  const [expandedProject, setExpandedProject] = useState<string | null>(null);
+
+  const projects = [
+    {
+      id: "lane-trucking",
+      title: "Lane Trucking Corp Security Infrastructure",
+      description:
+        "Led implementation of enterprise-wide security infrastructure including ELK Stack SIEM, advanced threat protection, and network segmentation strategy.",
+      imageSrc:
+        "https://placehold.co/600x400/252525/E0E0E0?text=Lane+Trucking+Corp",
+      imageAlt:
+        "Network security infrastructure diagram showing enterprise firewall and security implementations",
+      tags: ["SIEM", "Network Security", "Penetration Testing"],
+      githubLink: "https://github.com/yourusername/project",
+      fullDescription:
+        "Led implementation of enterprise-wide security infrastructure including ELK Stack SIEM, advanced threat protection, and network segmentation strategy. Implemented comprehensive monitoring solutions and established security protocols across the organization.",
+    },
+    {
+      id: "ten86-cigars",
+      title: "Ten86 Cigars Security Architecture",
+      description:
+        "Designed and implemented comprehensive security architecture including EDR, WPA3 Enterprise Wi-Fi, and IDS/IPS capabilities for retail environment.",
+      imageSrc: "https://placehold.co/600x400/252525/E0E0E0?text=Ten86+Cigars",
+      imageAlt:
+        "Retail security system implementation showing network infrastructure and monitoring systems",
+      tags: ["EDR", "WPA3", "IDS/IPS"],
+      githubLink: "https://github.com/yourusername/project",
+      fullDescription:
+        "Designed and implemented comprehensive security architecture including EDR, WPA3 Enterprise Wi-Fi, and IDS/IPS capabilities for retail environment. Conducted security assessments and optimized network security measures.",
+    },
+    {
+      id: "home-lab",
+      title: "Advanced Home Cybersecurity Lab",
+      description:
+        "Built comprehensive security testing environment with Nessus Scanner, ELK Stack SIEM, and advanced network segmentation using VLANs.",
+      imageSrc:
+        "https://placehold.co/600x400/252525/E0E0E0?text=Home+Security+Lab",
+      imageAlt:
+        "Home cybersecurity lab setup showing security tools and monitoring systems",
+      tags: ["Nessus", "Kali Linux", "VLAN"],
+      githubLink: "https://github.com/yourusername/project",
+      fullDescription:
+        "Built comprehensive security testing environment with Nessus Scanner, ELK Stack SIEM, and advanced network segmentation using VLANs. Enhanced skills in vulnerability assessment and network defense.",
+    },
+    {
+      id: "vyln-scanner",
+      title: "Vyln-Scanner",
+      description:
+        "Advanced Python-based vulnerability scanner featuring comprehensive security assessments, including SSL/TLS analysis, port discovery, and web vulnerability detection.",
+      imageSrc: "https://placehold.co/600x400/252525/E0E0E0?text=Vyln-Scanner",
+      imageAlt:
+        "Python-based vulnerability scanner interface showing security assessment results",
+      tags: ["Python", "Security", "Nmap"],
+      githubLink: "https://github.com/yourusername/project",
+      fullDescription:
+        "Advanced Python-based vulnerability scanner featuring comprehensive security assessments, including SSL/TLS analysis, port discovery, and web vulnerability detection. Contributed to open-source security tools.",
+    },
+    {
+      id: "tongue-diagnosis-ai",
+      title: "Tongue Diagnosis AI",
+      description:
+        "AI-powered web application for traditional Chinese medicine diagnosis through tongue image analysis, utilizing deep learning and computer vision.",
+      imageSrc:
+        "https://placehold.co/600x400/252525/E0E0E0?text=Tongue+Diagnosis+AI",
+      imageAlt: "AI-powered tongue diagnosis application interface",
+      tags: ["Python", "TensorFlow", "Flask"],
+      githubLink: "https://github.com/yourusername/project",
+      fullDescription:
+        "AI-powered web application for traditional Chinese medicine diagnosis through tongue image analysis, utilizing deep learning and computer vision. Integrated machine learning models for accurate diagnosis.",
+    },
+    {
+      id: "myddcampaign",
+      title: "MyDDCampaign",
+      description:
+        "Next.js application leveraging Google's Gemini AI to generate customized D&D campaigns, complete with storylines, encounters, and locations.",
+      imageSrc: "https://placehold.co/600x400/252525/E0E0E0?text=MyDDCampaign",
+      imageAlt: "D&D Campaign Generator showing AI-generated campaign elements",
+      tags: ["Next.js", "AI", "TypeScript"],
+      githubLink: "https://github.com/yourusername/project",
+      fullDescription:
+        "Next.js application leveraging Google's Gemini AI to generate customized D&D campaigns, complete with storylines, encounters, and locations. Enhanced with user-friendly interfaces and dynamic content generation.",
+    },
+    {
+      id: "ecommerce-platform",
+      title: "E-commerce Platform",
+      description:
+        "Full-featured online store with user authentication, product management, secure checkout, and admin dashboard built with Next.js and MongoDB.",
+      imageSrc:
+        "https://placehold.co/600x400/252525/E0E0E0?text=E-commerce+Platform",
+      imageAlt: "E-commerce platform showing product catalog and shopping cart",
+      tags: ["Next.js", "MongoDB", "Stripe"],
+      githubLink: "https://github.com/yourusername/project",
+      fullDescription:
+        "Full-featured online store with user authentication, product management, secure checkout, and admin dashboard built with Next.js and MongoDB. Implemented secure payment processing and responsive design.",
+    },
+  ];
+
   return (
     <div>
       <header className="bg-gray-900 py-4 shadow-lg sticky top-0 z-50">
         <div className="mx-auto px-4 justify-between items-center container flex">
           <div className="text-violet-500 text-2xl font-bold">Portfolio</div>
-          <nav className="md:flex hidden space-x-8">
-            <a
-              href="/jORyICWDABwehg3ZExsx#home"
-              className="text-white hover:text-violet-400 transition duration-300"
-            >
-              Home
-            </a>
-            <a
-              href="/jORyICWDABwehg3ZExsx#about"
-              className="text-white hover:text-violet-400 transition duration-300"
-            >
-              About
-            </a>
-            <a
-              href="/jORyICWDABwehg3ZExsx#projects"
-              className="text-white hover:text-violet-400 transition
-                duration-300"
-            >
-              Projects
-            </a>
-            <a
-              href="/jORyICWDABwehg3ZExsx#skills"
-              className="text-white hover:text-violet-400 transition
-                duration-300"
-            >
-              Skills
-            </a>
-            <a
-              href="/jORyICWDABwehg3ZExsx#contact"
-              className="text-white hover:text-violet-400 transition
-                duration-300"
-            >
-              Contact
-            </a>
-          </nav>
+
           <button
             type="submit"
             className="focus:outline-none md:hidden text-white"
@@ -167,213 +235,7 @@ export default function Home() {
           <p className="text-3xl md:text-4xl font-bold mb-16 text-center text-white">
             My Projects
           </p>
-          <div className="md:grid-cols-2 lg:grid-cols-3 grid grid-cols-1 gap-8">
-            {/* Lane Trucking Corp Project */}
-            <div className="bg-gray-900 rounded-xl shadow-2xl overflow-hidden transition-transform duration-300 hover:-translate-y-2">
-              <img
-                alt="Network security infrastructure diagram showing enterprise firewall and security implementations"
-                src="https://placehold.co/600x400/252525/E0E0E0?text=Lane+Trucking+Corp"
-                className="object-cover w-full h-56"
-              />
-              <div className="p-6">
-                <p className="text-xl font-bold mb-2 text-violet-400">
-                  Lane Trucking Corp Security Infrastructure
-                </p>
-                <p className="text-gray-400 mb-4">
-                  Led implementation of enterprise-wide security infrastructure
-                  including ELK Stack SIEM, advanced threat protection, and
-                  network segmentation strategy.
-                </p>
-                <div className="mb-6 flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    SIEM
-                  </span>
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    Network Security
-                  </span>
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    Penetration Testing
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Ten86 Cigars Project */}
-            <div className="bg-gray-900 rounded-xl shadow-2xl overflow-hidden transition-transform duration-300 hover:-translate-y-2">
-              <img
-                alt="Retail security system implementation showing network infrastructure and monitoring systems"
-                src="https://placehold.co/600x400/252525/E0E0E0?text=Ten86+Cigars"
-                className="object-cover w-full h-56"
-              />
-              <div className="p-6">
-                <p className="text-xl font-bold mb-2 text-violet-400">
-                  Ten86 Cigars Security Architecture
-                </p>
-                <p className="text-gray-400 mb-4">
-                  Designed and implemented comprehensive security architecture
-                  including EDR, WPA3 Enterprise Wi-Fi, and IDS/IPS capabilities
-                  for retail environment.
-                </p>
-                <div className="mb-6 flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    EDR
-                  </span>
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    WPA3
-                  </span>
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    IDS/IPS
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Home Lab Project */}
-            <div className="bg-gray-900 rounded-xl shadow-2xl overflow-hidden transition-transform duration-300 hover:-translate-y-2">
-              <img
-                alt="Home cybersecurity lab setup showing security tools and monitoring systems"
-                src="https://placehold.co/600x400/252525/E0E0E0?text=Home+Security+Lab"
-                className="object-cover w-full h-56"
-              />
-              <div className="p-6">
-                <p className="text-xl font-bold mb-2 text-violet-400">
-                  Advanced Home Cybersecurity Lab
-                </p>
-                <p className="text-gray-400 mb-4">
-                  Built comprehensive security testing environment with Nessus
-                  Scanner, ELK Stack SIEM, and advanced network segmentation
-                  using VLANs.
-                </p>
-                <div className="mb-6 flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    Nessus
-                  </span>
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    Kali Linux
-                  </span>
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    VLAN
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gray-900 rounded-xl shadow-2xl overflow-hidden transition-transform duration-300 hover:-translate-y-2">
-              <img
-                alt="Python-based vulnerability scanner interface showing security assessment results"
-                src="https://placehold.co/600x400/252525/E0E0E0?text=Vyln-Scanner"
-                className="object-cover w-full h-56"
-              />
-              <div className="p-6">
-                <p className="text-xl font-bold mb-2 text-violet-400">
-                  Vyln-Scanner
-                </p>
-                <p className="text-gray-400 mb-4">
-                  Advanced Python-based vulnerability scanner featuring
-                  comprehensive security assessments, including SSL/TLS
-                  analysis, port discovery, and web vulnerability detection.
-                </p>
-                <div className="mb-6 flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    Python
-                  </span>
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    Security
-                  </span>
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    Nmap
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gray-900 rounded-xl shadow-2xl overflow-hidden transition-transform duration-300 hover:-translate-y-2">
-              <img
-                alt="AI-powered tongue diagnosis application interface"
-                src="https://placehold.co/600x400/252525/E0E0E0?text=Tongue+Diagnosis+AI"
-                className="object-cover w-full h-56"
-              />
-              <div className="p-6">
-                <p className="text-xl font-bold mb-2 text-violet-400">
-                  Tongue Diagnosis AI
-                </p>
-                <p className="text-gray-400 mb-4">
-                  AI-powered web application for traditional Chinese medicine
-                  diagnosis through tongue image analysis, utilizing deep
-                  learning and computer vision.
-                </p>
-                <div className="mb-6 flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    Python
-                  </span>
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    TensorFlow
-                  </span>
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    Flask
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gray-900 rounded-xl shadow-2xl overflow-hidden transition-transform duration-300 hover:-translate-y-2">
-              <img
-                alt="D&D Campaign Generator showing AI-generated campaign elements"
-                src="https://placehold.co/600x400/252525/E0E0E0?text=MyDDCampaign"
-                className="object-cover w-full h-56"
-              />
-              <div className="p-6">
-                <p className="text-xl font-bold mb-2 text-violet-400">
-                  MyDDCampaign
-                </p>
-                <p className="text-gray-400 mb-4">
-                  Next.js application leveraging Google's Gemini AI to generate
-                  customized D&D campaigns, complete with storylines,
-                  encounters, and locations.
-                </p>
-                <div className="mb-6 flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    Next.js
-                  </span>
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    AI
-                  </span>
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    TypeScript
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gray-900 rounded-xl shadow-2xl overflow-hidden transition-transform duration-300 hover:-translate-y-2">
-              <img
-                alt="E-commerce platform showing product catalog and shopping cart"
-                src="https://placehold.co/600x400/252525/E0E0E0?text=E-commerce+Platform"
-                className="object-cover w-full h-56"
-              />
-              <div className="p-6">
-                <p className="text-xl font-bold mb-2 text-violet-400">
-                  E-commerce Platform
-                </p>
-                <p className="text-gray-400 mb-4">
-                  Full-featured online store with user authentication, product
-                  management, secure checkout, and admin dashboard built with
-                  Next.js and MongoDB.
-                </p>
-                <div className="mb-6 flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    Next.js
-                  </span>
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    MongoDB
-                  </span>
-                  <span className="px-3 py-1 bg-violet-900 text-violet-300 rounded-full text-sm bg-opacity-40">
-                    Stripe
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ProjectCarousel projects={projects} />
         </div>
       </section>
       <section className="py-20 bg-gray-900" id="skills">
@@ -418,9 +280,9 @@ export default function Home() {
                 <div>
                   <div className="justify-between mb-2 flex">
                     <span className="text-gray-300 font-medium">
-                      Python/Django/Flask
+                      Python-Flask-Django
                     </span>
-                    <span className="text-violet-400">85%</span>
+                    <span className="text-violet-400">100%</span>
                   </div>
                   <div className="w-full bg-gray-800 rounded-full h-2.5">
                     <div
@@ -697,6 +559,16 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Add HTB Owned Boxes Section */}
+      <section className="py-20 bg-gray-900" id="htb-boxes">
+        <div className="mx-auto px-4 container">
+          <p className="text-3xl md:text-4xl font-bold mb-16 text-center text-white">
+            Hack The Box Achievements
+          </p>
+        </div>
+      </section>
+
       <footer className="bg-gray-900 py-8">
         <div className="mx-auto px-4 container">
           <div className="text-center">
