@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 :root {
   --background: #ffffff;
@@ -22,5 +24,23 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.tech-text {
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.font-pixel {
+  font-family: 'Press Start 2P', cursive;
+}
+
+.pixel-text-sm {
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.pixel-text-lg {
+  font-size: 1.2rem;
+  line-height: 1.75;
 }

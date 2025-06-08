@@ -1,10 +1,26 @@
 "use client";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import ProjectCarousel from "./components/projectCarousel";
+import Services from "./components/services";
 
 export default function Home() {
   const [expandedProject, setExpandedProject] = useState<string | null>(null);
+
+  // Animation variants
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6 },
+  };
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
 
   const projects = [
     {
@@ -49,8 +65,8 @@ export default function Home() {
         "Built comprehensive security testing environment with Nessus Scanner, ELK Stack SIEM, and advanced network segmentation using VLANs. Enhanced skills in vulnerability assessment and network defense.",
     },
     {
-      id: "vyln-scanner",
-      title: "Vyln-Scanner",
+      id: "vuln-scanner",
+      title: "Vuln-Scanner",
       description:
         "Advanced Python-based vulnerability scanner featuring comprehensive security assessments, including SSL/TLS analysis, port discovery, and web vulnerability detection.",
       imageSrc: "https://placehold.co/600x400/252525/E0E0E0?text=Vyln-Scanner",
@@ -103,7 +119,12 @@ export default function Home() {
 
   return (
     <div>
-      <header className="bg-gray-900 py-4 shadow-lg sticky top-0 z-50">
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-gray-900 py-4 shadow-lg sticky top-0 z-50"
+      >
         <div className="mx-auto px-4 justify-between items-center container flex">
           <div className="text-violet-500 text-2xl font-bold">Portfolio</div>
 
@@ -119,7 +140,7 @@ export default function Home() {
               stroke="currentColor"
               id="Windframe_TfDm389FF"
             >
-              yuh
+              X
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -129,19 +150,32 @@ export default function Home() {
             </svg>
           </button>
         </div>
-      </header>
+      </motion.header>
+
       <section
-        style={{ backgroundImage: "url()" }}
-        className="py-20 md:py-32 bg-gradient-to-b from-gray-900 to-black"
+        className="py-20 md:py-32 relative"
         id="home"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/amazing-sunset-hills-mountains.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+        }}
       >
-        <div className="mx-auto px-4 md:flex-row items-center container flex flex-col">
-          <div className="md:w-1/2 md:mb-0 mb-12">
-            <p className="text-4xl md:text-6xl font-bold mb-6">
+        <motion.div
+          variants={staggerContainer}
+          initial="initial"
+          animate="animate"
+          className="relative mx-auto px-4 md:flex-row items-center container flex flex-col"
+        >
+          <motion.div variants={fadeInUp} className="md:w-1/2 md:mb-0 mb-12">
+            <p className="text-4xl md:text-6xl font-bold mb-6 tracking-tight pixel-font">
               <span className="text-white">Hello, I'm</span>
               <span className="text-violet-500"> Rayner Soto</span>
             </p>
-            <p className="text-2xl md:text-3xl mb-6 text-gray-400">
+            <p className="text-2xl md:text-3xl mb-6 text-gray-400 tracking-wider">
               Security Engineer & Penetration Tester
             </p>
             <p className="text-lg mb-8 text-gray-300 max-w-lg">
@@ -151,31 +185,43 @@ export default function Home() {
             </p>
             <div className="flex space-x-4">
               <a
-                href="/jORyICWDABwehg3ZExsx#contact"
+                href="https://www.upwork.com/freelancers/~01e5a9d4ae6c5c438d?mp_source=share"
                 className="px-8 py-3 bg-violet-600 text-white rounded-lg shadow-lg
                   hover:bg-violet-700 transition duration-300 hover:shadow-xl"
               >
                 Hire Me
               </a>
               <a
-                href="/jORyICWDABwehg3ZExsx#projects"
+                href="https://github.com/ray-SDJ"
                 className="px-8 py-3 text-violet-500 rounded-lg shadow-lg border
                   border-violet-500 hover:bg-violet-900 hover:bg-opacity-20 transition duration-300 hover:shadow-xl"
               >
                 View Work
               </a>
             </div>
-          </div>
-          <div className="md:w-1/2">
+          </motion.div>
+          <motion.div
+            variants={fadeInUp}
+            whileHover={{ scale: 1.05 }}
+            className="md:w-1/2"
+          >
             <img
-              alt="Professional portrait of John Doe, a full stack developer with a confident stance wearing professional attire against a dark background"
-              src="https://placehold.co/600x600/252525/E0E0E0?text=Professional+Portrait"
+              alt="Professional headshot of Rayner Soto"
+              src="/profile-pic.jpg"
               className="object-cover border-4 border-violet-500 rounded-full w-64 h-64 md:w-80 md:h-80 mx-auto shadow-2xl"
             />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
-      <section className="py-20 bg-gray-900" id="about">
+
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-20 bg-gray-900"
+        id="about"
+      >
         <div className="mx-auto px-4 container">
           <p className="text-3xl md:text-4xl font-bold mb-16 text-center text-white">
             About
@@ -183,8 +229,8 @@ export default function Home() {
           <div className="md:flex-row items-center flex flex-col">
             <div className="md:w-1/2 md:mb-0 mb-10">
               <img
-                alt="Full body portrait of John Doe in casual professional attire, showcasing personality and professionalism in a modern setting"
-                src="https://placehold.co/600x800/252525/E0E0E0?text=About+Me"
+                alt="Professional portrait of Rayner Soto"
+                src="/profile-pic.jpg"
                 className="max-w-md rounded-lg w-full mx-auto shadow-2xl"
               />
             </div>
@@ -229,18 +275,42 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
-      <section className="py-20 bg-black" id="projects">
+      </motion.section>
+
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-20"
+        id="projects"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('/amazing-sunset-hills-mountains.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+        }}
+      >
         <div className="mx-auto px-4 container">
           <p className="text-3xl md:text-4xl font-bold mb-16 text-center text-white">
             My Projects
           </p>
           <ProjectCarousel projects={projects} />
         </div>
-      </section>
-      <section className="py-20 bg-gray-900" id="skills">
+      </motion.section>
+
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-20 bg-gray-900"
+        id="skills"
+      >
         <div className="mx-auto px-4 container">
-          <p className="text-3xl md:text-4xl font-bold mb-16 text-center text-white">
+          <p className="text-3xl md:text-4xl font-bold mb-16 text-center text-white pixel-font">
             Technical Proficiencies
           </p>
           <div className="md:grid-cols-2 grid grid-cols-1 gap-12">
@@ -319,7 +389,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <p className="text-2xl font-bold mb-8 mt-12 text-violet-400">
+              <p className="text-2xl font-bold mb-8 mt-12 text-violet-400 pixel-font">
                 Security & Testing
               </p>
               <div className="space-y-6">
@@ -402,7 +472,9 @@ export default function Home() {
               </p>
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-gray-800 rounded-lg text-center p-6 hover:bg-gray-700 transition duration-300">
-                  <p className="text-lg font-bold text-white">Kali Linux</p>
+                  <p className="text-lg font-bold text-white pixel-font pixel-text-sm">
+                    Kali Linux
+                  </p>
                 </div>
                 <div className="bg-gray-800 rounded-lg text-center p-6 hover:bg-gray-700 transition duration-300">
                   <p className="text-lg font-bold text-white">OWASP Tools</p>
@@ -429,11 +501,28 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
-      <section className="py-20 bg-black" id="contact">
-        <div className="mx-auto px-4 container">
+      </motion.section>
+      <div>
+        <Services />
+      </div>
+
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="py-20 bg-black"
+        id="contact"
+      >
+        <motion.div
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          className="mx-auto px-4 container"
+        >
           <p className="text-3xl md:text-4xl font-bold mb-16 text-center text-white">
-            Get In
+            Contact Me
           </p>
           <div className="md:flex-row flex flex-col gap-12">
             <div className="md:w-1/3 space-y-8">
@@ -456,7 +545,7 @@ export default function Home() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-xl font-bold text-violet-400 mb-2">
+                  <p className="text-xl font-bold text-violet-400 mb-2 pixel-font">
                     Phone
                   </p>
                   <p className="text-gray-300">(201) 687-3237</p>
@@ -557,19 +646,16 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
-      {/* Add HTB Owned Boxes Section */}
-      <section className="py-20 bg-gray-900" id="htb-boxes">
-        <div className="mx-auto px-4 container">
-          <p className="text-3xl md:text-4xl font-bold mb-16 text-center text-white">
-            Hack The Box Achievements
-          </p>
-        </div>
-      </section>
-
-      <footer className="bg-gray-900 py-8">
+      <motion.footer
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="bg-gray-900 py-8"
+      >
         <div className="mx-auto px-4 container">
           <div className="text-center">
             <div className="text-violet-500 text-2xl font-bold mb-4">
@@ -583,7 +669,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </footer>
+      </motion.footer>
     </div>
   );
 }
