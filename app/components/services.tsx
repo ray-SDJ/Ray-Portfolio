@@ -8,131 +8,325 @@ export default function Services() {
 
   const services = {
     dev: {
-      title: "Web Development",
-      description: "Full-stack development with modern technologies",
+      title: "WEB DEVELOPMENT",
+      subtitle: "// FULL-STACK SOLUTIONS",
+      description:
+        "Building next-generation web applications with cutting-edge technologies",
       features: [
         "Custom Web Applications",
         "Responsive Design",
         "API Development",
-        "Database Design",
+        "Database Architecture",
         "UI/UX Implementation",
         "Performance Optimization",
       ],
+      icon: "< />",
+      color: "violet",
     },
     pentest: {
-      title: "Penetration Testing",
-      description: "Comprehensive security assessment and testing",
+      title: "PENETRATION TESTING",
+      subtitle: "// SECURITY ASSESSMENT",
+      description:
+        "Comprehensive security testing to identify and eliminate vulnerabilities",
       features: [
         "Vulnerability Assessment",
         "Network Security Testing",
         "Web Application Testing",
         "Social Engineering Tests",
         "Security Consultation",
-        "Detailed Report & Remediation",
+        "Detailed Reports & Remediation",
       ],
+      icon: "🛡️",
+      color: "cyan",
     },
   };
 
   return (
-    <section className="py-20 bg-gray-900" id="services">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          {/* Pixelated Toggle Switch */}
-          <div className="inline-flex bg-gray-800 p-1 rounded-lg mb-8">
+    <section
+      className="relative py-20 bg-gradient-to-b from-black via-violet-900/10 to-black"
+      id="services"
+    >
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-600/10 rounded-full blur-3xl"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -50, 0],
+          }}
+          transition={{ duration: 20, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl"
+          animate={{
+            x: [0, -100, 0],
+            y: [0, 50, 0],
+          }}
+          transition={{ duration: 15, repeat: Infinity }}
+        />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold mb-8 font-mono tracking-wider"
+            animate={{
+              textShadow: [
+                "0 0 20px rgba(147,51,234,0.8)",
+                "0 0 40px rgba(6,182,212,0.8)",
+                "0 0 20px rgba(147,51,234,0.8)",
+              ],
+            }}
+            transition={{ duration: 3, repeat: Infinity }}
+          >
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400">
+              &lt;SERVICES/&gt;
+            </span>
+          </motion.h2>
+
+          {/* Futuristic Toggle Switch */}
+          <motion.div
+            className="inline-flex bg-black/50 backdrop-blur-sm p-1 rounded-full mb-8 border border-violet-500/30"
+            initial={{ scale: 0.9 }}
+            animate={{ scale: 1 }}
+          >
             <motion.button
               onClick={() => setSelectedService("dev")}
-              className={`px-6 py-2 rounded-md font-pixel text-sm ${
+              className={`relative px-8 py-3 rounded-full font-mono text-sm tracking-wider transition-all duration-300 ${
                 selectedService === "dev"
-                  ? "bg-violet-600 text-white"
+                  ? "text-white"
                   : "text-gray-400 hover:text-white"
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Web Developer
+              <AnimatePresence>
+                {selectedService === "dev" && (
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-violet-600 to-purple-600 rounded-full"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    layoutId="serviceToggle"
+                  />
+                )}
+              </AnimatePresence>
+              <span className="relative z-10">WEB DEVELOPER</span>
             </motion.button>
+
             <motion.button
               onClick={() => setSelectedService("pentest")}
-              className={`px-6 py-2 rounded-md font-pixel text-sm ${
+              className={`relative px-8 py-3 rounded-full font-mono text-sm tracking-wider transition-all duration-300 ${
                 selectedService === "pentest"
-                  ? "bg-violet-600 text-white"
+                  ? "text-white"
                   : "text-gray-400 hover:text-white"
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Penetration Testing
+              <AnimatePresence>
+                {selectedService === "pentest" && (
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-full"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    layoutId="serviceToggle"
+                  />
+                )}
+              </AnimatePresence>
+              <span className="relative z-10">PENETRATION TESTER</span>
             </motion.button>
-          </div>
+          </motion.div>
 
-          {/* Service Window */}
+          {/* Service Display */}
           <AnimatePresence mode="wait">
             <motion.div
               key={selectedService}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="bg-gray-800 rounded-lg p-8 shadow-2xl border-2 border-violet-500"
+              initial={{ opacity: 0, y: 20, rotateX: -15 }}
+              animate={{ opacity: 1, y: 0, rotateX: 0 }}
+              exit={{ opacity: 0, y: -20, rotateX: 15 }}
+              transition={{ duration: 0.5 }}
+              className="relative max-w-4xl mx-auto"
             >
-              {/* Window Header */}
-              <div className="flex items-center mb-6 border-b border-gray-700 pb-4">
-                <div className="flex space-x-2">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              <div className="relative bg-gradient-to-br from-gray-900/90 to-black/90 rounded-2xl p-8 shadow-2xl border border-violet-500/30 backdrop-blur-sm overflow-hidden">
+                {/* Animated corner accents */}
+                <div className="absolute top-0 left-0 w-32 h-32">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-violet-500 to-transparent" />
+                  <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-violet-500 to-transparent" />
                 </div>
-                <h3 className="text-white font-pixel text-xl mx-auto pr-12">
-                  {services[selectedService].title}
-                </h3>
-              </div>
-
-              {/* Service Content */}
-              <div className="text-left">
-                <p className="text-gray-300 mb-6">
-                  {services[selectedService].description}
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {services[selectedService].features.map((feature, index) => (
-                    <motion.div
-                      key={feature}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      className="flex items-center space-x-3"
-                    >
-                      <svg
-                        className="w-5 h-5 text-violet-500"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      <span className="text-gray-300 font-pixel text-sm">
-                        {feature}
-                      </span>
-                    </motion.div>
-                  ))}
+                <div className="absolute bottom-0 right-0 w-32 h-32">
+                  <div className="absolute bottom-0 right-0 w-full h-1 bg-gradient-to-l from-cyan-500 to-transparent" />
+                  <div className="absolute bottom-0 right-0 w-1 h-full bg-gradient-to-t from-cyan-500 to-transparent" />
                 </div>
 
-                {/* Call to Action */}
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="mt-8 px-8 py-3 bg-violet-600 text-white rounded-lg font-pixel text-sm
-                    hover:bg-violet-700 transition duration-300"
+                {/* Service Header */}
+                <motion.div
+                  className="flex items-center justify-between mb-6 pb-6 border-b border-gray-700/50"
+                  initial={{ x: -20 }}
+                  animate={{ x: 0 }}
                 >
-                  Get Started
-                </motion.button>
+                  <div className="flex items-center space-x-4">
+                    <motion.div
+                      className={`text-4xl font-bold ${
+                        selectedService === "dev"
+                          ? "text-violet-500"
+                          : "text-cyan-500"
+                      }`}
+                      animate={{ rotate: [0, 360] }}
+                      transition={{
+                        duration: 20,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                    >
+                      {services[selectedService].icon}
+                    </motion.div>
+                    <div className="text-left">
+                      <h3 className="text-white font-mono text-2xl tracking-wider">
+                        {services[selectedService].title}
+                      </h3>
+                      <p
+                        className={`text-sm font-mono ${
+                          selectedService === "dev"
+                            ? "text-violet-400"
+                            : "text-cyan-400"
+                        }`}
+                      >
+                        {services[selectedService].subtitle}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Status indicator */}
+                  <div className="flex items-center space-x-2">
+                    <motion.div
+                      className={`w-3 h-3 rounded-full ${
+                        selectedService === "dev"
+                          ? "bg-violet-500"
+                          : "bg-cyan-500"
+                      }`}
+                      animate={{ opacity: [1, 0.3, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
+                    <span className="text-green-400 text-sm font-mono">
+                      ONLINE
+                    </span>
+                  </div>
+                </motion.div>
+
+                {/* Service Content */}
+                <div className="text-left">
+                  <motion.p
+                    className="text-gray-300 mb-8 text-lg"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    {services[selectedService].description}
+                  </motion.p>
+
+                  <motion.div
+                    className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    {services[selectedService].features.map(
+                      (feature, index) => (
+                        <motion.div
+                          key={feature}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.4 + index * 0.1 }}
+                          className="flex items-center space-x-3 bg-black/30 backdrop-blur-sm p-3 rounded-lg border border-gray-700/50 hover:border-violet-500/50 transition-all duration-300"
+                          whileHover={{
+                            x: 10,
+                            borderColor:
+                              selectedService === "dev"
+                                ? "rgba(147,51,234,0.5)"
+                                : "rgba(6,182,212,0.5)",
+                          }}
+                        >
+                          <motion.div
+                            className={`w-2 h-2 rounded-full ${
+                              selectedService === "dev"
+                                ? "bg-violet-500"
+                                : "bg-cyan-500"
+                            }`}
+                            animate={{ scale: [1, 1.5, 1] }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              delay: index * 0.2,
+                            }}
+                          />
+                          <span className="text-gray-300 font-mono text-sm">
+                            {feature}
+                          </span>
+                        </motion.div>
+                      )
+                    )}
+                  </motion.div>
+
+                  {/* Call to Action */}
+                  <motion.div
+                    className="flex justify-center"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.8 }}
+                  >
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`relative px-12 py-4 font-mono text-sm tracking-wider
+                        text-white rounded-lg overflow-hidden group ${
+                          selectedService === "dev"
+                            ? "bg-gradient-to-r from-violet-600 to-purple-600"
+                            : "bg-gradient-to-r from-cyan-600 to-blue-600"
+                        }`}
+                    >
+                      <span className="relative z-10">GET STARTED</span>
+                      <motion.div
+                        className="absolute inset-0 bg-white/20"
+                        initial={{ x: "-100%" }}
+                        whileHover={{ x: "100%" }}
+                        transition={{ duration: 0.5 }}
+                      />
+                    </motion.button>
+                  </motion.div>
+                </div>
+
+                {/* Animated grid overlay */}
+                <motion.div
+                  className="absolute inset-0 pointer-events-none opacity-10"
+                  style={{
+                    backgroundImage: `linear-gradient(${
+                      selectedService === "dev"
+                        ? "rgba(147,51,234,0.2)"
+                        : "rgba(6,182,212,0.2)"
+                    } 1px, transparent 1px),
+                                    linear-gradient(90deg, ${
+                                      selectedService === "dev"
+                                        ? "rgba(147,51,234,0.2)"
+                                        : "rgba(6,182,212,0.2)"
+                                    } 1px, transparent 1px)`,
+                    backgroundSize: "20px 20px",
+                  }}
+                  animate={{
+                    backgroundPosition: ["0px 0px", "20px 20px"],
+                  }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                />
               </div>
             </motion.div>
           </AnimatePresence>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
