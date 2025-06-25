@@ -5,6 +5,7 @@ export default function Services() {
   const [selectedService, setSelectedService] = useState<"dev" | "pentest">(
     "dev"
   );
+  const [showEmail, setShowEmail] = useState(false);
 
   const services = {
     dev: {
@@ -39,6 +40,12 @@ export default function Services() {
       icon: "🛡️",
       color: "cyan",
     },
+  };
+
+  const handleEmailClick = () => {
+    setShowEmail(!showEmail);
+    // Optional: Copy email to clipboard
+    navigator.clipboard.writeText("raynersoto0908@outlook.com");
   };
 
   return (
@@ -282,16 +289,73 @@ export default function Services() {
                     transition={{ delay: 0.8 }}
                   >
                     <motion.button
+                      onClick={handleEmailClick}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       className={`relative px-12 py-4 font-mono text-sm tracking-wider
-                        text-white rounded-lg overflow-hidden group ${
+                        text-white rounded-lg overflow-hidden group transition-all duration-300 ${
                           selectedService === "dev"
                             ? "bg-gradient-to-r from-violet-600 to-purple-600"
                             : "bg-gradient-to-r from-cyan-600 to-blue-600"
-                        }`}
+                        } ${showEmail ? "px-6" : "px-12"}`}
                     >
-                      <span className="relative z-10">GET STARTED</span>
+                      <AnimatePresence mode="wait">
+                        {!showEmail ? (
+                          <motion.span
+                            key="send-email"
+                            className="relative z-10"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            Send Email
+                          </motion.span>
+                        ) : (
+                          <motion.span
+                            key="email-display"
+                            className="relative z-10 flex items-center space-x-2"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-4 w-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M3 8l7.89 7.89a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                              />
+                            </svg>
+                            <span>rayner.soto.dev@gmail.com</span>
+                            <motion.svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-4 w-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              transition={{ delay: 0.2 }}
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                              />
+                            </motion.svg>
+                          </motion.span>
+                        )}
+                      </AnimatePresence>
+
                       <motion.div
                         className="absolute inset-0 bg-white/20"
                         initial={{ x: "-100%" }}
@@ -300,6 +364,22 @@ export default function Services() {
                       />
                     </motion.button>
                   </motion.div>
+
+                  {/* Optional: Add a small tooltip */}
+                  <AnimatePresence>
+                    {showEmail && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="flex justify-center mt-2"
+                      >
+                        <span className="text-xs text-gray-400 font-mono">
+                          Email copied to clipboard!
+                        </span>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
 
                 {/* Animated grid overlay */}

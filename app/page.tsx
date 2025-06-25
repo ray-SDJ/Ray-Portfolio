@@ -8,7 +8,7 @@ import {
 } from "framer-motion";
 import ProjectCarousel from "./components/projectCarousel";
 import Services from "./components/services";
-import { allProjects } from './components/projectsData';
+import { allProjects } from "./components/projectsData";
 
 export default function Home() {
   const [expandedProject, setExpandedProject] = useState<string | null>(null);
@@ -718,19 +718,6 @@ export default function Home() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth="2"
-                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                    />
-                  ),
-                  title: "PHONE",
-                  value: "(201) 687-3237",
-                  color: "from-violet-600 to-purple-600",
-                },
-                {
-                  icon: (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
                       d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                     />
                   ),
@@ -756,7 +743,7 @@ export default function Home() {
                     </>
                   ),
                   title: "LOCATION",
-                  value: "Little Ferry, NJ",
+                  value: "Bergen County, New Jersey, USA",
                   color: "from-purple-600 to-violet-600",
                 },
               ].map((item, i) => (
@@ -844,47 +831,7 @@ export default function Home() {
               initial={{ x: 50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.5 }}
-            >
-              <div className="bg-gradient-to-br from-violet-900/20 to-cyan-900/20 p-8 rounded-xl backdrop-blur-sm border border-violet-500/30">
-                <p className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400 mb-6 font-mono">
-                  // SEND MESSAGE
-                </p>
-                <form className="space-y-4">
-                  <motion.input
-                    type="text"
-                    placeholder="YOUR NAME"
-                    className="w-full px-4 py-3 bg-black/50 border border-violet-500/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-violet-500 font-mono"
-                    whileFocus={{ scale: 1.02 }}
-                  />
-                  <motion.input
-                    type="email"
-                    placeholder="YOUR EMAIL"
-                    className="w-full px-4 py-3 bg-black/50 border border-cyan-500/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 font-mono"
-                    whileFocus={{ scale: 1.02 }}
-                  />
-                  <motion.textarea
-                    placeholder="YOUR MESSAGE"
-                    rows={4}
-                    className="w-full px-4 py-3 bg-black/50 border border-violet-500/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-violet-500 font-mono resize-none"
-                    whileFocus={{ scale: 1.02 }}
-                  />
-                  <motion.button
-                    type="submit"
-                    className="w-full py-3 bg-gradient-to-r from-violet-600 to-cyan-600 text-white rounded-lg font-mono tracking-wider relative overflow-hidden group"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <span className="relative z-10">SEND MESSAGE</span>
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-violet-600"
-                      initial={{ x: "-100%" }}
-                      whileHover={{ x: 0 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </motion.button>
-                </form>
-              </div>
-            </motion.div>
+            ></motion.div>
           </div>
         </motion.div>
       </motion.section>
