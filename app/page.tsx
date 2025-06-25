@@ -391,8 +391,12 @@ export default function Home() {
                 {[
                   { label: "NAME", value: "Rayner Soto" },
                   { label: "EMAIL", value: "raynersoto0908@outlook.com" },
-                  { label: "LOCATION", value: "Little Ferry, NJ" },
-                  { label: "PHONE", value: "201-687-3237" },
+                  { label: "LOCATION", value: "Bergen County, NJ" },
+                  {
+                    label: "Upwork",
+                    value:
+                      "https://www.upwork.com/freelancers/~01e5a9d4ae6c5c438d?mp_source=share",
+                  },
                 ].map((item, i) => (
                   <motion.div
                     key={item.label}
