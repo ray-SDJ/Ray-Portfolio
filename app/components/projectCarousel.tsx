@@ -34,21 +34,17 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
 
   return (
     <div className="relative w-full">
-      <motion.div
-        className="absolute -top-16 right-4 flex items-center space-x-2 bg-black/50 backdrop-blur-sm px-4 py-2 rounded-full border border-violet-500/30"
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        <span className="text-violet-400 font-mono text-sm">PROJECT</span>
-        <span className="text-cyan-400 font-mono text-lg font-bold">
+      <div className="absolute -top-16 right-4 flex items-center space-x-2 bg-muted/80 backdrop-blur-sm px-4 py-2 rounded-full border border-border">
+        <span className="text-muted-foreground text-sm">PROJECT</span>
+        <span className="text-primary text-lg font-bold">
           {currentIndex + 1}-
           {Math.min(currentIndex + projectsPerPage, projects.length)}
         </span>
-        <span className="text-gray-500 font-mono text-sm">OF</span>
-        <span className="text-violet-400 font-mono text-lg font-bold">
+        <span className="text-muted-foreground text-sm">OF</span>
+        <span className="text-primary text-lg font-bold">
           {projects.length}
         </span>
-      </motion.div>
+      </div>
 
       <div className="overflow-hidden px-4">
         <AnimatePresence mode="wait">
@@ -82,69 +78,52 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
         </AnimatePresence>
       </div>
 
-      <motion.button
+      <button
         onClick={prevSlide}
-        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 group"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+        aria-label="Previous projects"
+        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-card backdrop-blur-sm p-4 rounded-full text-foreground border border-border hover:border-primary transition-all duration-300"
       >
-        <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-violet-600 to-purple-600 rounded-full blur-lg opacity-50 group-hover:opacity-100 transition-opacity" />
-          <div className="relative bg-black/80 backdrop-blur-sm p-4 rounded-full text-white border border-violet-500/50 group-hover:border-violet-500 transition-all duration-300">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </div>
-        </div>
-      </motion.button>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
+      </button>
 
-      <motion.button
+      <button
         onClick={nextSlide}
-        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 group"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+        aria-label="Next projects"
+        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-card backdrop-blur-sm p-4 rounded-full text-foreground border border-border hover:border-primary transition-all duration-300"
       >
-        <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-full blur-lg opacity-50 group-hover:opacity-100 transition-opacity" />
-          <div className="relative bg-black/80 backdrop-blur-sm p-4 rounded-full text-white border border-cyan-500/50 group-hover:border-cyan-500 transition-all duration-300">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </div>
-        </div>
-      </motion.button>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </button>
 
-      <motion.div
-        className="flex justify-center items-center mt-12 gap-3"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-      >
-        <div className="relative w-48 h-2 bg-gray-800/50 rounded-full overflow-hidden">
+      <div className="flex justify-center items-center mt-12 gap-3">
+        <div className="relative w-48 h-2 bg-muted rounded-full overflow-hidden">
           <motion.div
-            className="absolute h-full bg-gradient-to-r from-violet-600 to-cyan-600 rounded-full"
+            className="absolute h-full bg-primary rounded-full"
             animate={{
               width: `${
                 ((Math.floor(currentIndex / projectsPerPage) + 1) /
@@ -154,53 +133,26 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
             }}
             transition={{ duration: 0.5, type: "spring" }}
           />
-
-          <motion.div
-            className="absolute h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent"
-            animate={{
-              x: ["-100%", "100%"],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
         </div>
 
         <div className="flex gap-2 ml-4">
           {Array.from(
             { length: Math.ceil(projects.length / projectsPerPage) },
             (_, i) => (
-              <motion.button
+              <button
                 key={i}
                 onClick={() => setCurrentIndex(i * projectsPerPage)}
-                className={`relative w-3 h-3 rounded-full transition-all duration-300 ${
+                aria-label={`Go to page ${i + 1}`}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   Math.floor(currentIndex / projectsPerPage) === i
-                    ? "bg-gradient-to-r from-violet-500 to-cyan-500"
-                    : "bg-gray-600"
+                    ? "bg-primary"
+                    : "bg-muted-foreground/30"
                 }`}
-                whileHover={{ scale: 1.5 }}
-                whileTap={{ scale: 0.8 }}
-              >
-                {Math.floor(currentIndex / projectsPerPage) === i && (
-                  <motion.div
-                    className="absolute inset-0 bg-violet-500 rounded-full"
-                    animate={{
-                      scale: [1, 1.5, 1],
-                      opacity: [0.5, 0, 0.5],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                    }}
-                  />
-                )}
-              </motion.button>
+              />
             )
           )}
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

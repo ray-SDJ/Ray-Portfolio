@@ -1,65 +1,30 @@
+import type React from "react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Space_Mono } from "next/font/google";
-import { Press_Start_2P } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const spaceMono = Space_Mono({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
-
-const pixelFont = Press_Start_2P({
-  weight: "400",
-  subsets: ["latin"],
-  display: "swap",
-});
+const geist = Geist({ subsets: ["latin"] });
+const geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Rayner Soto | Full-Stack Developer & Cybersecurity Specialist",
+  title: "Rayner Soto | Full-Stack Engineer & Penetration Tester",
   description:
-    "Portfolio of Rayner Soto (ray-sdj) - Full-Stack Developer specializing in cybersecurity, penetration testing, and modern web development. OSCP candidate with expertise in Next.js, Python, and security infrastructure.",
-  keywords: [
-    "Rayner Soto",
-    "ray-sdj",
-    "Full-Stack Developer",
-    "Cybersecurity",
-    "Penetration Testing",
-    "OSCP",
-    "Next.js",
-    "Python",
-    "Web Development",
-  ],
-  authors: [{ name: "Rayner Soto", url: "https://github.com/ray-SDJ" }],
-  creator: "Rayner Soto",
-  openGraph: {
-    title: "Rayner Soto | Full-Stack Developer & Cybersecurity Specialist",
-    description:
-      "Portfolio showcasing cybersecurity projects, web development, and penetration testing expertise",
-    url: "https://your-domain.com", // Replace with your actual domain
-    siteName: "Rayner Soto Portfolio",
-    type: "website",
-  },
+    "Portfolio of Rayner Soto - Full-Stack Developer and Cybersecurity Specialist. OSCP candidate specializing in application security, penetration testing, and secure web development.",
+  generator: "v0.app",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" className={pixelFont.className}>
-      <body>{children}</body>
+    <html lang="en" className="scroll-smooth">
+      <body className={`${geist.className} antialiased`}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
